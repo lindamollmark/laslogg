@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 @Entity
 public class BookEntity {
 
+    int id;
     String name;
     int numberOfPages;
     String author;

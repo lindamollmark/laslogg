@@ -3,8 +3,8 @@ package com.laslogg.core.service;
 import com.laslogg.core.model.Book;
 import com.laslogg.persistens.BookDao;
 import com.laslogg.persistens.BookEntity;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,9 +13,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookService {
 
+    ApplicationContext context =
+            new ClassPathXmlApplicationContext("Spring-Module.xml");
 
-    @Autowired
-    private BookDao dao;
+    private BookDao dao= (BookDao) context.getBean("bookDao");
 
     public void addBook(Book newBook) {
         BookEntity book = new BookEntity();

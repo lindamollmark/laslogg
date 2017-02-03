@@ -1,6 +1,8 @@
 package com.laslogg.config;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -8,6 +10,9 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  */
 @Configuration
 public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer {
+    ApplicationContext context =
+            new ClassPathXmlApplicationContext("Spring-Module.xml");
+
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{RootConfig.class};

@@ -3,7 +3,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-    <bean id="customerDAO" class="com.laslogg.persistens.BookDao">
+    <bean id="bookDao" class="com.laslogg.persistens.JDBCBookDao">
         <property name="dataSource" ref="dataSource" />
     </bean>
 
