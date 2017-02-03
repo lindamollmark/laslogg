@@ -27,8 +27,8 @@ public class JDBCBookDao implements BookDao {
         try {
             conn = dataSource.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, book.getAuthor());
-            ps.setString(2, book.getName());
+            ps.setString(1, book.getName());
+            ps.setString(2, book.getAuthor());
             ps.setInt(3, book.getNumberOfPages());
             ps.executeUpdate();
             ps.close();

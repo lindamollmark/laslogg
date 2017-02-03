@@ -21,6 +21,8 @@ public class BookService {
     public void addBook(Book newBook) {
         BookEntity book = new BookEntity();
         book.setName(newBook.getName());
+        book.setAuthor(newBook.getAuthor());
+        book.setNumberOfPages(newBook.getNumberOfPages());
         dao.save(book);
 
     }
