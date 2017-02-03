@@ -1,6 +1,5 @@
 package com.laslogg.persistens;
 
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -10,6 +9,12 @@ import javax.sql.DataSource;
  */
 @Repository
 public class BookDao {
+
+    private DataSource dataSource;
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     public void save(BookEntity book){
         System.out.println("Kommer in i dao");
