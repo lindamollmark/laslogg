@@ -17,19 +17,19 @@
 
 <section>
     <h1>Välkommen till Läsloggen!</h1>
-    <form method="POST" action="login/">
+    <form method="POST" action="newUser/">
         <table>
             <tr>
-                <td><label>Användarnamn</label></td>
+                <td><label>Välj användarnamn</label></td>
                 <td><input type="text" name="username"/></td>
             </tr>
             <tr>
-                <td><label>Lösenord</label></td>
+                <td><label>Välj lösenord</label></td>
                 <td><input type="password" name="password" /></td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <input type="submit" value="Login"/>
+                    <input type="submit" value="Registrera dig"/>
                 </td>
             </tr>
         </table>
@@ -37,7 +37,6 @@
     <br>
     <br>
     <br>
-    <p>Ny användare? Vänligen skapa ditt konto här! <a href="newUser.jsp">Ny användare</a></p>
 </section>
 </body>
 </html>

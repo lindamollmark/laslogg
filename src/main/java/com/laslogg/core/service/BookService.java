@@ -1,8 +1,8 @@
 package com.laslogg.core.service;
 
 import com.laslogg.core.model.Book;
-import com.laslogg.persistens.BookDao;
-import com.laslogg.persistens.BookEntity;
+import com.laslogg.persistens.dao.BookDao;
+import com.laslogg.persistens.entity.BookEntity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.laslogg.persistens;
+package com.laslogg.persistens.entity;
 
 import javax.persistence.Entity;
 

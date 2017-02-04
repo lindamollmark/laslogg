@@ -26,26 +26,43 @@ public class HomeController {
         return "start";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("loginBean") User loginBean) {
+    @RequestMapping(value = "login/", method = RequestMethod.POST)
+    public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("User") User user) {
         ModelAndView model = null;
         try {
-            boolean isValidUser = userService.isValidUser(loginBean.getUsername(), loginBean.getPassword());
+            boolean isValidUser = userService.isValidUser(user.getUsername(), user.getPassword());
             if (isValidUser) {
                 System.out.println("User Login Successful");
-                request.setAttribute("loggedInUser", loginBean.getUsername());
-                model = new ModelAndView("welcome");
+                request.setAttribute("loggedInUser", user.getUsername());
+                model = new ModelAndView("bookpage");
             } else {
                 model = new ModelAndView("login");
-                model.addObject("loginBean", loginBean);
+                model.addObject("loginBean", user);
                 request.setAttribute("message", "Invalid credentials!!");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return model;
-
     }
 
+    @RequestMapping(value = "newUser/", method = RequestMethod.POST)
+    public ModelAndView addNewUser(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("User") User user) {
+        ModelAndView model = null;
+        try {
+            boolean isValidUser = userService.addUser(user.getUsername(), user.getPassword());
+            if (isValidUser) {
+                System.out.println("Din användare är nu registrerad");
+                model = new ModelAndView("/");
+            } else {
+                model = new ModelAndView("login");
+                model.addObject("loginBean", user);
+                request.setAttribute("message", "Invalid credentials!!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return model;
+    }
 
 }
