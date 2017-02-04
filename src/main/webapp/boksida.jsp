@@ -17,19 +17,23 @@
 
 <section>
     <h1>Välkommen till Läsloggen!</h1>
-    <form method="POST" action="login/">
+    <form method="POST" action="bookpage/">
         <table>
             <tr>
-                <td><label>Användarnamn</label></td>
+                <td><label>Bokens namn</label></td>
                 <td><input name="name" /></td>
             </tr>
             <tr>
-                <td><label>Lösenord</label></td>
-                <td><input type="password" name="password" /></td>
+                <td><label>Författare</label></td>
+                <td><input name="author" /></td>
+            </tr>
+            <tr>
+                <td><label>Antal sidor</label></td>
+                <td><input name="numberOfPages" /></td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <input type="submit" value="Login"/>
+                    <input type="submit" value="Registrera läsning"/>
                 </td>
             </tr>
         </table>
@@ -37,7 +41,6 @@
     <br>
     <br>
     <br>
-    <p>Ny användare? Vänligen skapa ditt konto här! <button>Ny användare</button></p>
 </section>
 </body>
 </html>
