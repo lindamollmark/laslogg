@@ -15,19 +15,24 @@ public class UserService {
     ApplicationContext context =
             new ClassPathXmlApplicationContext("Spring-Module.xml");
 
-    private UserDao dao= (UserDao) context.getBean("userDao");
+    private UserDao dao = (UserDao) context.getBean("userDao");
 
 
     public boolean isValidUser(String username, String password) {
+        UserEntity user = dao.getUser(username);
+        boolean isValidUser = dao.isValidUser(username, password);
 
-        return true;
+        return isValidUser;
     }
 
     public boolean addUser(String username, String password) {
+        if(isValidUser(username, password)){
+            return false;
+        }
         UserEntity user = new UserEntity();
         user.setUsername(username);
         user.setPassword(password);
         dao.save(user);
- return true;
+        return true;
     }
 }

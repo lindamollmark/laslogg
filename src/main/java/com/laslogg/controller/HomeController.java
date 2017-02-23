@@ -36,7 +36,7 @@ public class HomeController {
                 request.setAttribute("loggedInUser", user.getUsername());
                 model = new ModelAndView("bookpage");
             } else {
-                model = new ModelAndView("login");
+                model = new ModelAndView("start");
                 model.addObject("loginBean", user);
                 request.setAttribute("message", "Invalid credentials!!");
             }
@@ -53,11 +53,12 @@ public class HomeController {
             boolean isValidUser = userService.addUser(user.getUsername(), user.getPassword());
             if (isValidUser) {
                 System.out.println("Din användare är nu registrerad");
-                model = new ModelAndView("/");
+                model = new ModelAndView("start");
+                request.setAttribute("message", "Användarkontot är nu skapat!");
             } else {
-                model = new ModelAndView("login");
-                model.addObject("loginBean", user);
-                request.setAttribute("message", "Invalid credentials!!");
+                model = new ModelAndView("newUser");
+                model.addObject("User", user);
+                request.setAttribute("message", "Användarnamnet upptaget");
             }
         } catch (Exception e) {
             e.printStackTrace();

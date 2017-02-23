@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<header></header>
+<header>${message}</header>
 <nav>
     <div class="returnButtons">
 
