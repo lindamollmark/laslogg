@@ -17,13 +17,13 @@ public class BookController {
 
     @Autowired private BookService service;
 
-    @RequestMapping(value = "bookpage/", method = RequestMethod.POST)
+    @RequestMapping(value = "login/bookpage/", method = RequestMethod.POST)
     public String book(@ModelAttribute("Book")Book newBook,
                       ModelMap modell){
 
         service.addBook(newBook);
 
-        return null;
+        return "bookpage";
 
     }
 }
