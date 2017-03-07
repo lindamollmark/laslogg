@@ -1,14 +1,12 @@
 package com.laslogg.core.service;
 
+import com.laslogg.core.model.User;
 import com.laslogg.persistens.dao.UserDao;
 import com.laslogg.persistens.entity.UserEntity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by Linda on 2017-02-04.
- */
 @Service
 public class UserService {
 
@@ -21,7 +19,6 @@ public class UserService {
     public boolean isValidUser(String username, String password) {
         UserEntity user = dao.getUser(username);
         boolean isValidUser = dao.isValidUser(username, password);
-
         return isValidUser;
     }
 
@@ -34,5 +31,11 @@ public class UserService {
         user.setPassword(password);
         dao.save(user);
         return true;
+    }
+
+    public User getUser(String username, String password) {
+        UserEntity ue = dao.getUser(username);
+        User user = ue.toUser();
+        return user;
     }
 }

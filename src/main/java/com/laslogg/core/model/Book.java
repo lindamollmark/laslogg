@@ -4,9 +4,19 @@ package com.laslogg.core.model;
  * Created by Linda on 2017-01-22.
  */
 public class Book {
+    int id;
     String name;
     int numberOfPages;
     String author;
+    User user;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -30,5 +40,13 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -3,10 +3,13 @@ package com.laslogg.controller;
 import com.laslogg.core.model.User;
 import com.laslogg.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  * Created by Linda on 2017-01-22.
  */
 @Controller
+@Scope("session")
+@SessionAttributes("user")
+@RequestMapping()
 public class HomeController {
 
     @Autowired
@@ -27,23 +33,24 @@ public class HomeController {
     }
 
     @RequestMapping(value = "login/", method = RequestMethod.POST)
-    public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("User") User user) {
-        ModelAndView model = null;
+    public String executeLogin(HttpServletRequest request, Model model, @ModelAttribute("User") User user) {
+
         try {
-            boolean isValidUser = userService.isValidUser(user.getUsername(), user.getPassword());
+            Boolean isValidUser = userService.isValidUser(user.getUsername(), user.getPassword());
             if (isValidUser) {
-                System.out.println("User Login Successful");
-                request.setAttribute("loggedInUser", user.getUsername());
-                model = new ModelAndView("bookpage");
+                User theUser = userService.getUser(user.getUsername(), user.getPassword());
+                request.getSession().setAttribute("user", theUser);
+                model.addAttribute("user", theUser);
+                return "bookpage";
+
             } else {
-                model = new ModelAndView("start");
-                model.addObject("loginBean", user);
+
                 request.setAttribute("message", "Invalid credentials!!");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return model;
+        return "start";
     }
 
     @RequestMapping(value = "newUser/", method = RequestMethod.POST)

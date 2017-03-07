@@ -1,10 +1,10 @@
 package com.laslogg.persistens.entity;
 
+import com.laslogg.core.model.User;
+
 import javax.persistence.Entity;
 
-/**
- * Created by Linda on 2017-02-04.
- */
+
 @Entity
 public class UserEntity {
 
@@ -34,5 +34,16 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public User toUser() {
+        return new User(id, username, password);
+    }
+
+    public UserEntity fromModel(User user) {
+        id = user.getId();
+        username = user.getUsername();
+        password = user.getPassword();
+        return this;
     }
 }

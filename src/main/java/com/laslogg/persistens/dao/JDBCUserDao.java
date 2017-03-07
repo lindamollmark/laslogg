@@ -61,8 +61,9 @@ public class JDBCUserDao implements UserDao {
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String foundUsername = rs.getString("USERNAME");
-                user.setUsername(foundUsername);
+                user.setId(rs.getInt("id"));
+                user.setUsername(rs.getString("USERNAME"));
+                user.setPassword(rs.getString("password"));
                 return user;
             }
 

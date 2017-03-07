@@ -1,6 +1,6 @@
 package com.laslogg.persistens.entity;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 /**
  * Created by Linda on 2017-02-03.
@@ -8,10 +8,16 @@ import javax.persistence.Entity;
 @Entity
 public class BookEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     String name;
     int numberOfPages;
     String author;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name= "userId")
+    UserEntity user;
 
     public String getName() {
         return name;
@@ -35,5 +41,21 @@ public class BookEntity {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 }

@@ -22,7 +22,7 @@ public class JDBCBookDao implements BookDao {
 
     public void save(BookEntity book){
         String sql = "INSERT INTO BOOK " +
-                "(NAME, AUTHOR, PAGES) VALUES (?, ?, ?)";
+                "(NAME, AUTHOR, PAGES, USER) VALUES (?, ?, ?, ?)";
         Connection conn = null;
 
         try {
@@ -31,6 +31,7 @@ public class JDBCBookDao implements BookDao {
             ps.setString(1, book.getName());
             ps.setString(2, book.getAuthor());
             ps.setInt(3, book.getNumberOfPages());
+            ps.setInt(4, book.getUser().getId());
             ps.executeUpdate();
             ps.close();
 
