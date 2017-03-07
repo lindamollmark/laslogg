@@ -44,7 +44,8 @@ public class HomeController {
                 User theUser = userService.getUser(user.getUsername(), user.getPassword());
                 request.getSession().setAttribute("user", theUser);
                 model.addAttribute("user", theUser);
-                List<Book> bookList =bookService.getBookList(theUser);
+                List<Book> bookList = bookService.getBookList(theUser);
+                model.addAttribute("books", bookList);
                 return "bookpage";
 
             } else {
