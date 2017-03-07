@@ -8,9 +8,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by Linda on 2017-02-03.
- */
 @Service
 public class BookService {
 

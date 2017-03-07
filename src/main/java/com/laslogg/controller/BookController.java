@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.Map;
 
-/**
- * Created by Linda on 2017-01-22.
- */
 @Controller
 @Scope("session")
 @SessionAttributes("user")
@@ -32,6 +29,5 @@ public class BookController {
         service.addBook(newBook);
 
         return "bookpage";
-
     }
 }

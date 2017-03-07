@@ -9,9 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Created by Linda on 2017-02-04.
- */
 @Repository
 public class JDBCUserDao implements UserDao {
 

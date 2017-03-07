@@ -2,9 +2,6 @@ package com.laslogg.persistens.entity;
 
 import javax.persistence.*;
 
-/**
- * Created by Linda on 2017-02-03.
- */
 @Entity
 public class BookEntity {
 

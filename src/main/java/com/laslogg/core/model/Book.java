@@ -1,8 +1,5 @@
 package com.laslogg.core.model;
 
-/**
- * Created by Linda on 2017-01-22.
- */
 public class Book {
     int id;
     String name;

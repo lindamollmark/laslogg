@@ -18,8 +18,7 @@ public class UserService {
 
     public boolean isValidUser(String username, String password) {
         UserEntity user = dao.getUser(username);
-        boolean isValidUser = dao.isValidUser(username, password);
-        return isValidUser;
+        return dao.isValidUser(username, password);
     }
 
     public boolean addUser(String username, String password) {
@@ -35,7 +34,6 @@ public class UserService {
 
     public User getUser(String username, String password) {
         UserEntity ue = dao.getUser(username);
-        User user = ue.toUser();
-        return user;
+        return ue.toUser();
     }
 }

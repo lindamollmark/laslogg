@@ -1,8 +1,5 @@
 package com.laslogg.core.model;
 
-/**
- * Created by Linda on 2017-02-04.
- */
 public class User {
     private int id;
     private String username;

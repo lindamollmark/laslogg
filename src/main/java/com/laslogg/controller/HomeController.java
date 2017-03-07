@@ -15,9 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by Linda on 2017-01-22.
- */
 @Controller
 @Scope("session")
 @SessionAttributes("user")

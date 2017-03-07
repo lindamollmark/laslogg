@@ -8,9 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-/**
- * Created by Linda on 2017-02-03.
- */
 @Repository
 public class JDBCBookDao implements BookDao {
 
