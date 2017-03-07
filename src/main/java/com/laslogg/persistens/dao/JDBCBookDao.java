@@ -1,12 +1,16 @@
 package com.laslogg.persistens.dao;
 
 import com.laslogg.persistens.entity.BookEntity;
+import com.laslogg.persistens.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class JDBCBookDao implements BookDao {
@@ -44,5 +48,44 @@ public class JDBCBookDao implements BookDao {
         }
 
 
+    }
+
+    public List<BookEntity> getUsersBook(int userId) {
+        String sql = "SELECT * FROM BOOK WHERE" +
+                " USER = ?";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        List<BookEntity> bookList = new ArrayList<BookEntity>();
+        try {
+            conn = dataSource.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                BookEntity book = new BookEntity();
+                book.setId(rs.getInt("id"));
+                book.setName(rs.getString("NAME"));
+                book.setAuthor(rs.getString("Author"));
+                book.setNumberOfPages(rs.getInt("pages"));
+                UserEntity user = new UserEntity();
+                user.setId(rs.getInt("user"));
+                book.setUser(user);
+                bookList.add(book);
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+
+        } finally {
+            if (conn != null) {
+                try {
+                    ps.close();
+                    conn.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+        return bookList;
     }
 }

@@ -1,5 +1,7 @@
 package com.laslogg.persistens.entity;
 
+import com.laslogg.core.model.Book;
+
 import javax.persistence.*;
 
 @Entity
@@ -54,5 +56,14 @@ public class BookEntity {
 
     public void setUser(UserEntity user) {
         this.user = user;
+    }
+
+    public Book toModel() {
+        Book book = new Book();
+        book.setUser(user.toUser());
+        book.setNumberOfPages(numberOfPages);
+        book.setAuthor(author);
+        book.setName(name);
+        return book;
     }
 }

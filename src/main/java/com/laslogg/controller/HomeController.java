@@ -1,6 +1,8 @@
 package com.laslogg.controller;
 
+import com.laslogg.core.model.Book;
 import com.laslogg.core.model.User;
+import com.laslogg.core.service.BookService;
 import com.laslogg.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 @Scope("session")
@@ -23,6 +26,9 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BookService bookService;
 
     @RequestMapping(value = "/")
     public String home() {
@@ -38,6 +44,7 @@ public class HomeController {
                 User theUser = userService.getUser(user.getUsername(), user.getPassword());
                 request.getSession().setAttribute("user", theUser);
                 model.addAttribute("user", theUser);
+                List<Book> bookList =bookService.getBookList(theUser);
                 return "bookpage";
 
             } else {
